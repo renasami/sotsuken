@@ -1,0 +1,57 @@
+version: "3.1"
+
+services:
+  postgres:
+    # https://cloud.google.com/sql/docs/postgres/db-versions?hl=ja
+    image: "postgres"
+    volumes:
+      - "./postgres:/var/lib/postgresql/data"
+      - "./postgres/initdb:/docker-entrypoint-initdb.d"
+    ports:
+      - "9999:5432"
+    environment:
+      POSTGRES_PASSWORD: ""
+      POSTGRES_HOST_AUTH_METHOD: trust
+      TIME_ZONE: "TZ=Asia/Tokyo"
+
+
+  network:
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: ./network/Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ./network/app:/app
+    environment:
+      - TZ=Asia/Tokyo
+
+
+  users:
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: ./users/Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./users/app:/app
+    environment:
+      - TZ=Asia/Tokyo
+
+
+  suggestions:
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: ./suggestions/Dockerfile
+    ports:
+      - 8888:80
+    volumes:
+      - ./suggestions/app:/app
+    environment:
+      - TZ=Asia/Tokyo
