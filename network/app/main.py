@@ -13,3 +13,8 @@ def read_root():
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
+
+
+@app.post("/auth/register")
+def register():
+    print("hello")
