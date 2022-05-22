@@ -5,7 +5,7 @@ services:
     # https://cloud.google.com/sql/docs/postgres/db-versions?hl=ja
     image: "postgres"
     volumes:
-      - "./postgres:/var/lib/postgresql/data"
+      - "postgres-data:/var/lib/postgresql/data"
       - "./postgres/initdb:/docker-entrypoint-initdb.d"
     ports:
       - "9999:5432"
@@ -55,3 +55,7 @@ services:
       - ./suggestions/app:/app
     environment:
       - TZ=Asia/Tokyo
+  
+volumes:
+  postgres-data:
+    driver: local
