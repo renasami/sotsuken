@@ -30,27 +30,28 @@ class YahooRequest(Requests):
         res = requests.get(self.url + self.key)
         return res
 
-    async def __get_with_param(self,param) -> Response:
+    def __get_with_param(self,param) -> Response:
         keys = list(param.keys())
         data = self.key
         for key in keys:
             data = "{}&{}={}".format(data,key, str(param[key]))
-        res =  await requests.get(self.url+data)
+        res =   requests.get(self.url+data)
         return res 
 
-    async def get_with_params(self)->list:
-        total = await self.__get()
-        print(total)
+    def get_with_params(self)->list:
+        total = self.__get().json()["total"]
         params = {
             "results":100,
             "starts": 1
         }
         result = []
+        print(total)
         while total > 0:
-            resp = await asyncio.wait_for(self.__get_with_param(self,params))
+            resp = self.__get_with_param(params)
 
             for n in resp.json()["results"]:
                 result.append(n)
             total -= 100
-            params.starts += 100
+            params["starts"] += 100
+            print(total)
         return result
