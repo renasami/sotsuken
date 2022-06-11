@@ -5,6 +5,7 @@ fonttools==4.33.3
 idna==3.3
 keopscore==2.1
 kiwisolver==1.4.2
+kmeans-pytorch==0.3
 matplotlib==3.5.2
 numpy==1.23.0rc2
 packaging==21.3
@@ -18,5 +19,6 @@ six==1.16.0
 torch==1.13.0.dev20220611
 torchaudio==0.14.0.dev20220603
 torchvision==0.14.0.dev20220609
+tqdm==4.64.0
 typing_extensions==4.2.0
 urllib3==1.26.9
