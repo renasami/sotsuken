@@ -45,7 +45,6 @@ class YahooRequest(Requests):
             "starts": 1
         }
         result = []
-        print(total)
         while total > 0:
             resp = self.__get_with_param(params)
 
