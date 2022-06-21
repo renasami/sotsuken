@@ -15,7 +15,7 @@ x = np.random.randn(data_size, dims) / 6
 x = torch.from_numpy(x)
 
 list_csv = []
-with open("./test.csv","r") as f:
+with open("./fin_to_analyze.csv","r") as f:
     csvreader = csv.reader(f)
     next(csvreader)
     for item in csvreader:

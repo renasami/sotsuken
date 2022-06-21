@@ -35,22 +35,27 @@ class YahooRequest(Requests):
         data = self.key
         for key in keys:
             data = "{}&{}={}".format(data,key, str(param[key]))
-        res =   requests.get(self.url+data)
-        return res 
+ 
+        return  requests.get(self.url+data)
 
     def get_with_params(self)->list:
         total = self.__get().json()["total"]
         params = {
             "results":100,
-            "starts": 1
+            "start": 1
         }
         result = []
         while total > 0:
-            resp = self.__get_with_param(params)
+            try:
+                resp = self.__get_with_param(params)
 
-            for n in resp.json()["results"]:
-                result.append(n)
-            total -= 100
-            params["starts"] += 100
-            print(total)
+                for n in resp.json()["results"]:
+                    result.append(n)
+                total -= 100
+                params["start"] += 100
+                print(total)
+            except:
+                total -= 100
+                params["start"] += 100
+                continue
         return result
