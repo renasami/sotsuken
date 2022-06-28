@@ -44,7 +44,7 @@ def get_comp_link(url,page_num):
 
 def is_hojin_num(arg:str):
     if len(arg) >13:
-        num = arg[:12]
+        num = arg[:13]
         if num.isdecimal():
             return (True,num)
     return (False,"")
