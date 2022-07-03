@@ -1,16 +1,16 @@
-CREATE DATABASE "sotsuken-users";
-CREATE DATABASE "sotsuken-users-test";
+CREATE DATABASE "sotsuken-suggestions";
+CREATE DATABASE "sotsuken-suggestions-test";
 
 
 -- NOBYPASSRLSはデフォルトだが明示しておく。
-CREATE USER asami WITH NOBYPASSRLS;
+-- CREATE USER asami WITH NOBYPASSRLS;
 
 
 -- テーブル作成ごとにGRANTしなくて済むようDEFAULT PRIVILEGESを設定する。
-\c sotsuken-users
+\c sotsuken-suggestions
 ALTER DEFAULT PRIVILEGES FOR USER postgres GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO asami;
 ALTER DEFAULT PRIVILEGES FOR USER postgres GRANT USAGE ON SCHEMAS TO asami;
 
-\c sotsuken-users-test
+\c sotsuken-suggestions-test
 ALTER DEFAULT PRIVILEGES FOR USER postgres GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO asami;
 ALTER DEFAULT PRIVILEGES FOR USER postgres GRANT USAGE ON SCHEMAS TO asami;
