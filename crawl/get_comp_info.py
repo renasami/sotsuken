@@ -19,7 +19,7 @@ def get_hojin_infos():
     data_list = []
     keys = ["corporate_number","location","name","employee_number","company_size_male","company_size_female","company_url","average_age","average_continuous_service_years_Male","average_continuous_service_years_Female","patent"]
     headers = ["corporate_number","location","name","employee_number","company_size_male","company_size_female","company_url","average_age","month_average_predetermined_overtime_hours","average_continuous_service_years_Male","average_continuous_service_years_Female","shohyo","tokkyo","others"]
-    with open("./comp_inf_tmp.csv", "r", encoding="utf-8") as csv_file:
+    with open("./it_comp_inf_tmp.csv", "r", encoding="utf-8") as csv_file:
         files = csv.DictReader(csv_file, delimiter=",", doublequote=True, lineterminator="\r\n", quotechar='"', skipinitialspace=True)
         for file in files:
             result_to_dic = {}
@@ -54,7 +54,7 @@ def get_hojin_infos():
             num += 1
             print(num)
     print(data_list[:3])
-    with open("./test_result.csv","w",encoding="utf8") as f:
+    with open("./it_test_result.csv","w",encoding="utf8") as f:
         writer = csv.DictWriter(f,fieldnames=headers)
         writer.writeheader()
         for d in data_list:

@@ -7,8 +7,8 @@ import time
 import os
 import re
 import csv
-# url = "https://xn--vckya7nx51ik9ay55a3l3a.com/industries/5250"
-url = "https://xn--vckya7nx51ik9ay55a3l3a.com/"
+url = "https://xn--vckya7nx51ik9ay55a3l3a.com/industries/5250"
+url2 = "https://xn--vckya7nx51ik9ay55a3l3a.com"
 
 page_num = 0
 
@@ -38,7 +38,8 @@ def get_comp_link(url,page_num):
                 links.append(str(e.get("href")))
     page_num += 1
     time.sleep(1)
-    if page_num == 11:
+    if page_num == 28:
+        get_comp_info(url2,links)
         return
     return get_comp_link(url,page_num)
 
@@ -59,6 +60,7 @@ fieldnames = ["name","hojin_num","edinet","site_url"]
 def get_comp_info(url,links:list):
     # test_lis.append(fieldnames)
     for link in links:
+        print(link)
         comp_labeled =  {
             "name":"",
             "hojin_num":"",
@@ -87,9 +89,9 @@ def get_comp_info(url,links:list):
             elif "http" in hoj.text:
                 comp_labeled["site_url"] = hoj.text.strip()
         test_lis.append(comp_labeled)
+get_comp_link(url,page_num)
 
-get_comp_info(url,hojin)
-with open("comp_inf_tmp.csv","w") as f:
+with open("it_comp_inf_tmp.csv","w") as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
     for n in test_lis:
