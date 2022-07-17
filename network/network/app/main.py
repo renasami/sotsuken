@@ -1,9 +1,10 @@
 from typing import Optional
 
-from fastapi import FastAPI,APIRouter
+from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-import controller.user_route as user_route
+from .controller import user_route
 
+import uvicorn
 
 app = FastAPI()
 
@@ -15,16 +16,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
-prefix = APIRouter(prefix="/api/v1")
-
-
-# app.include_router(prefix)
-
-# @prefix.get('/prefix')
-# def prefix():
-    # return "prefix"
 
 @app.get("/")
 def read_root():
@@ -40,8 +31,14 @@ def read_item(item_id: int, q: Optional[str] = None):
 def register():
     print("hello")
 
+
 @app.get("/test")
 def test():
     return {"Hello": "World"}
+
+
 app.include_router(user_route.router)
 
+
+def main():
+    uvicorn.run("network.main:main", host="0.0.0.0", port=8080, reload=True)

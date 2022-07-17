@@ -14,51 +14,51 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
       TIME_ZONE: "TZ=Asia/Tokyo"
 
-  network:
-    depends_on:
-      - postgres
-    build:
-      context: .
-      dockerfile: ./network/Dockerfile
-    ports:
-      - 8080:80
-    volumes:
-      - ./network/app:/app
-    environment:
-      - TZ=Asia/Tokyo
-    restart: always
+  # network:
+  #   depends_on:
+  #     - postgres
+  #   build:
+  #     context: .
+  #     dockerfile: ./network/Dockerfile
+  #   ports:
+  #     - 8080:80
+  #   volumes:
+  #     - ./network/app:/app
+  #   environment:
+  #     - TZ=Asia/Tokyo
+  #   restart: always
 
 
 
-  users:
-    depends_on:
-      - postgres
-    build:
-      context: .
-      dockerfile: ./users/Dockerfile
-    ports:
-      - 8000:80
-    volumes:
-      - ./users/app:/app
-    environment:
-      - TZ=Asia/Tokyo
-    restart: always
+  # users:
+  #   depends_on:
+  #     - postgres
+  #   build:
+  #     context: .
+  #     dockerfile: ./users/Dockerfile
+  #   ports:
+  #     - 8000:80
+  #   volumes:
+  #     - ./users/app:/app
+  #   environment:
+  #     - TZ=Asia/Tokyo
+  #   restart: always
 
 
 
-  suggestions:
-    depends_on:
-      - postgres
-    build:
-      context: .
-      dockerfile: ./suggestions/Dockerfile
-    ports:
-      - 8888:80
-    volumes:
-      - ./suggestions/app:/app
-    environment:
-      - TZ=Asia/Tokyo
-    restart: always
+  # suggestions:
+  #   depends_on:
+  #     - postgres
+  #   build:
+  #     context: .
+  #     dockerfile: ./suggestions/Dockerfile
+  #   ports:
+  #     - 8888:80
+  #   volumes:
+  #     - ./suggestions/app:/app
+  #   environment:
+  #     - TZ=Asia/Tokyo
+  #   restart: always
 
   
 volumes:

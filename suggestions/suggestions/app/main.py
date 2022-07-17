@@ -2,7 +2,7 @@ from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+import uvicorn
 app = FastAPI()
 
 app.add_middleware(
@@ -23,3 +23,9 @@ def read_root():
 def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
+
+def main():
+    uvicorn.run("suggestions.main:main", host="0.0.0.0", port=8888, reload=True)
+
+if __name__ == "__main__":
+    main()
