@@ -1,0 +1,10 @@
+{
+    "name": "networkt",
+    "dockerComposeFile": [
+        "..../docker-compose.yml",
+        "../../.devcontainer/docker-compose.yml"
+    ],
+    "service": "network",
+    "workspaceFolder": "/workspace/client",
+    "shutdownAction": "none"
+}

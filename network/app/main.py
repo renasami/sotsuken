@@ -1,7 +1,9 @@
 from typing import Optional
 
-from fastapi import FastAPI
+from fastapi import FastAPI,APIRouter
 from fastapi.middleware.cors import CORSMiddleware
+import controller.user_route as user_route
+
 
 app = FastAPI()
 
@@ -14,9 +16,18 @@ app.add_middleware(
 )
 
 
+
+prefix = APIRouter(prefix="/api/v1")
+
+
+# app.include_router(prefix)
+
+# @prefix.get('/prefix')
+# def prefix():
+    # return "prefix"
+
 @app.get("/")
 def read_root():
-    print("hello")
     return {"Hello": "World"}
 
 
@@ -28,3 +39,9 @@ def read_item(item_id: int, q: Optional[str] = None):
 @app.post("/auth/register")
 def register():
     print("hello")
+
+@app.get("/test")
+def test():
+    return {"Hello": "World"}
+app.include_router(user_route.router)
+
