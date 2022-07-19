@@ -4,3 +4,5 @@
 @crawl or classter
 pip freeze > requirements.txt
 コピペ用。
+
+マジやらかした
