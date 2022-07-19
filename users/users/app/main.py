@@ -3,7 +3,8 @@ from typing import Optional
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+
+from users.app.models.companies import calc_and_get_company
 
 app = FastAPI()
 
@@ -16,12 +17,6 @@ app.add_middleware(
 )
 
 
-class Test(BaseModel):
-    name: str
-    test_1: str
-    test_2: str
-
-
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -32,9 +27,10 @@ def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 
-@app.post("/example")
-def test(exa: Test):
-    return exa
+@app.get("/example")
+def test():
+    calc_and_get_company()
+    return True
 
 
 def main():

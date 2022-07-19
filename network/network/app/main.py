@@ -1,10 +1,10 @@
 from typing import Optional
 
-from fastapi import FastAPI, APIRouter
-from fastapi.middleware.cors import CORSMiddleware
-from .controller import user_route
-
 import uvicorn
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from .controller import user_route, handler
 
 app = FastAPI()
 
@@ -38,6 +38,7 @@ def test():
 
 
 app.include_router(user_route.router)
+app.include_router(handler.router)
 
 
 def main():

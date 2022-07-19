@@ -1,9 +1,6 @@
-from uuid import UUID
-
 from pydantic import BaseModel
 
 
 class UserQuestionnaire(BaseModel):
-    user_name: str
-    uuid: UUID
+    name: str
     test_1: str
